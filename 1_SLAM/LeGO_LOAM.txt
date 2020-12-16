@@ -1,0 +1,25 @@
+/********* HOW TO LeGO LOAM *************/
+
+>>This is essential command for SLAM in ROS
+$ sudo apt-get install -y ros-melodic-navigation
+$ sudo apt-get install -y ros-melodic-robot-localization
+$ sudo apt-get install -y ros-kinetic-robot-state-publisher
+
+>>First, LeGo LOAM needs GTSAM. So, install GTSAM.
+$ wget -O ~/Downloads/gtsam.zip https://github.com/borglab/gtsam/archive/4.0.0-alpha2.zip
+$ cd ~/Downloads/ && unzip gtsam.zip -d ~/Downloads/
+$ cd ~/Downloads/gtsam-4.0.0-alpha2/
+$ mkdir build && cd build
+$ cmake ..
+$ sudo make install
+
+>>Second, Build and install LeGo-LOAM
+$ cd ~/catkin_ws/src
+$ git clone https://github.com/RobustFieldAutonomyLab/LeGO-LOAM.git
+$ cd ..
+$ catkin_make -j1
+$ roslaunch lego_loam run.launch   
+  // when you use data at real-time, you should change parameter in run.launch
+  // (run.launch) use_sim_time -> "true"is using bagfile, "false"is using real-time data.
+
+$ rosbag play *.bag --clock --topic /velodyne_points /imu/data   or   $ rosbag play *.bag --clock --topic /velodyne_points
