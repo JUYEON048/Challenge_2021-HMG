@@ -23,3 +23,6 @@ $ roslaunch lego_loam run.launch
   // (run.launch) use_sim_time -> "true"is using bagfile, "false"is using real-time data.
 
 $ rosbag play *.bag --clock --topic /velodyne_points /imu/data   or   $ rosbag play *.bag --clock --topic /velodyne_points
+
+http://daddynkidsmakers.blogspot.com/2020/09/lio-sam-slam.html
+http://daddynkidsmakers.blogspot.com/2019/06/lidar-slam.html
