@@ -1,0 +1,19 @@
+/********* HOW TO play Cartographer *************/
+
+$ cd catkin_ws
+$ source install_isolated/setup.bash
+
+//play cartographer
+$ roslaunch cartographer_ros demo_my_robot.launch bag_filename:=/home/juyeon/catkin_ws/09_new_env.bag
+
+//save map
+$ rosservice call /finish_trajectory 0
+
+$ rosservice call /write_state "{filename: '${HOME}/catkin_ws/09_new_env.bag.pbstream', include_unfinished_submaps: 1}"
+
+//transform map information to .png
+$ roslaunch cartographer_ros assets_writer_backpack_3d.launch \bag_filenames:=/home/juyeon/catkin_ws/09_new_env.bag \pose_graph_filename:=/home/juyeon/catkin_ws/09_new_env.bag.pbstream
+
+
+(if you want catkin_ws's build)
+$ wstool update -t src
