@@ -17,3 +17,17 @@ $ roslaunch cartographer_ros assets_writer_backpack_3d.launch \bag_filenames:=/h
 
 (if you want catkin_ws's build)
 $ wstool update -t src
+
+
+//localization
+$ roslaunch cartographer_ros demo_my_robot_localization.launch bag_filename:=/home/juyeon/catkin_ws/12_new_route3.bag load_state_filename:=/home/juyeon/catkin_ws/12_new_route3.bag.pbstream
+
+//visualization urdf
+$ roslaunch urdf_tutorial display.launch model:=/home/juyeon/catkin_ws/backpack_3d.urdf
+
+
+//pointcloude(2)_to_laserscan
+$ rosrun pointcloud_to_laserscan pointcloud_to_laserscan_node cloud_in:=/velodyne_points
+
+//save pointcloud2 (.ply)
+$ rosservice call /write_state "{filename: '${HOME}/catkin_ws/edit_b.bag_points.ply', include_unfinished_submaps: 1}"
