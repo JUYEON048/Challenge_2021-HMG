@@ -6,6 +6,7 @@ $ source install_isolated/setup.bash
 //play cartographer
 $ roslaunch cartographer_ros demo_my_robot.launch bag_filename:=/home/juyeon/catkin_ws/09_new_env.bag
 
+
 //save map
 $ rosservice call /finish_trajectory 0
 
@@ -19,8 +20,13 @@ $ roslaunch cartographer_ros assets_writer_backpack_3d.launch \bag_filenames:=/h
 $ wstool update -t src
 
 
+//validate
+$ cartographer_rosbag_validate -bag_filename your_bag.bag
+
+
 //localization
 $ roslaunch cartographer_ros demo_my_robot_localization.launch bag_filename:=/home/juyeon/catkin_ws/12_new_route3.bag load_state_filename:=/home/juyeon/catkin_ws/12_new_route3.bag.pbstream
+
 
 //visualization urdf
 $ roslaunch urdf_tutorial display.launch model:=/home/juyeon/catkin_ws/backpack_3d.urdf
@@ -29,5 +35,8 @@ $ roslaunch urdf_tutorial display.launch model:=/home/juyeon/catkin_ws/backpack_
 //pointcloude(2)_to_laserscan
 $ rosrun pointcloud_to_laserscan pointcloud_to_laserscan_node cloud_in:=/velodyne_points
 
-//save pointcloud2 (.ply)
-$ rosservice call /write_state "{filename: '${HOME}/catkin_ws/edit_b.bag_points.ply', include_unfinished_submaps: 1}"
+
+//rosbag to csv
+$ rostopic echo -b gps_imu_odom_udp.bag -p /udp > udp.csv
+                     (bag file name)       (topic name)  (csv file name)
+
