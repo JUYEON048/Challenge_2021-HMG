@@ -1,3 +1,5 @@
+#start point is based gps point(wgs84)
+
 #!/usr/bin/env python
 import rospy
 import math
