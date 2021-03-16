@@ -27,7 +27,7 @@ class Localization():
 
 	def callback(self,gps,imu,odom,udp):
 		print("[start ] Localization process")
-		self.val_init()				# value init
+#		self.val_init()				# value init
 #		self.gps_set(gps)				# gps data loading
 		self.val_set(imu, udp, gps)				# value set
 		self.KF()					# start estimate pose using KF
